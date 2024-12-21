@@ -32,6 +32,7 @@ let gravity = 0.4;
 let gameOver = false;
 let score = 0;
 
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -59,6 +60,11 @@ window.onload = function() {
 function update() {
     requestAnimationFrame(update);
     if (gameOver) {
+        explode = new Image();
+        explode.src = "./explosion.png";
+        explode.onload = function() {
+            context.drawImage(explode, plane.x, plane.y, 222, 146 );
+        }
         return;
     }
     context.clearRect(0, 0, board.width, board.height);
@@ -100,7 +106,29 @@ function update() {
     context.fillText(score, 5, 45);
 
     if (gameOver) {
-        context.fillText("GAME OVER", 5, 90);
+        context.fillText("You're so bad at this game", 400, 400)
+        document.body.animate([
+            { traLsform: "rotateX(90deg)" },
+            { transform: "rotateY(90deg)" },
+            { transform: "rotateX(-90deg)" },
+            { transform: "rotateY(-90deg)" },
+            { transform: "scale(0.5)" },
+            { transform: "scale(2)" },
+            { transform: "scale(1)" },
+            { transform: "scale(0.5)" },
+            { transform: "rotateX(25deg)" },
+            { transform: "rotateY(75deg)" },
+            { transform: "rotateX(-25deg)" },
+            { transform: "rotateY(-67deg)" },
+            { transform: "scale(2)" },
+            { transform: "scale(1)" },
+            { transform: "skew(90deg, -90deg)" },
+            { transform: "rotate(2turn)" }
+        ],
+    {
+        duration: 1000,
+
+    })
     }
 }
 
@@ -134,8 +162,8 @@ function placePipes() {
 }
 
 function moveplane(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
-
+    if (e.code == "Space" || e.code == "ArrowUp") {
+        
         velocityY = -6;
 
 
