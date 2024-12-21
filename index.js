@@ -122,7 +122,6 @@ function update() {
             { transform: "rotateY(-67deg)" },
             { transform: "scale(2)" },
             { transform: "scale(1)" },
-            { transform: "skew(90deg, -90deg)" },
             { transform: "rotate(2turn)" }
         ],
     {
